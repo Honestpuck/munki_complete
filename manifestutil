@@ -1,0 +1,190 @@
+# Bash completion for manifestutil
+# by Tony Williams, honestpuck@gmail.com
+# version 0.1
+# 16/05/2017
+
+__manifestutilcomp_words_include() {
+  local i=1
+  while [[ "$i" -lt "$COMP_CWORD" ]]
+  do
+    if [[ "${COMP_WORDS[i]}" = "$1" ]]
+    then
+      return 0
+    fi
+    i="$((++i))"
+  done
+  return 1
+}
+
+__manifestutilcomp() {
+  # break $1 on space, tab, and newline characters,
+  # and turn it into a newline separated list of words
+  local list s sep=$'\n' IFS=$' '$'\t'$'\n'
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+
+  for s in $1
+  do
+    __manifestutilcomp_words_include "$s" && continue
+    list="$list$s$sep"
+  done
+
+  IFS="$sep"
+  COMPREPLY=($(compgen -W "$list" -- "$cur"))
+}
+
+_manifestutil_add-catalog() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  case "$cur" in
+    --*)
+      __manifestutilcomp "--help --manifest="
+      return
+      ;;
+  esac
+}
+
+_manifestutil_add-included-manifest() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  case "$cur" in
+    --*)
+      __manifestutilcomp "--help --manifest"
+      return
+      ;;
+  esac
+}
+
+_manifestutil_add-pkg() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  case "$cur" in
+    --*)
+      __manifestutilcomp "--help --manifest --section"
+      return
+      ;;
+  esac
+}
+
+_manifestutil_configure() {
+  return
+}
+
+_manifestutil_copy-manifest() {
+  return
+}
+
+_manifestutil_display-manifest() {
+  return
+}
+
+_manifestutil_exit() {
+  return
+}
+
+_manifestutil_find() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  case "$cur" in
+    --*)
+      __manifestutilcomp "--help --section"
+      return
+      ;;
+  esac
+}
+
+_manifestutil_help() {
+  return
+}
+
+_manifestutil_list-catalog-items() {
+  return
+}
+
+_manifestutil_list-catalogs() {
+  return
+}
+
+_manifestutil_list-manifests() {
+  return
+}
+
+_manifestutil_new-manifest() {
+  return
+}
+
+_manifestutil_remove-catalog() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  case "$cur" in
+    --*)
+      __manifestutilcomp "--help --manifest="
+      return
+      ;;
+  esac
+}
+
+_manifestutil_remove-included-manifest() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  case "$cur" in
+    --*)
+      __manifestutilcomp "--help --manifest="
+      return
+      ;;
+  esac
+}
+
+_manifestutil_remove-pkg() {
+  local cur="${COMP_WORDS[COMP_CWORD]}"
+  case "$cur" in
+    --*)
+      __manifestutilcomp "--help --manifest= --section="
+      return
+      ;;
+  esac
+}
+
+_manifestutil_rename-manifest() {
+  return
+}
+
+_manifestutil_version() {
+  return
+}
+
+
+_manifestutil() {
+  local cur prev opts
+  COMPREPLY=()
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+  if [[ "$COMP_CWORD" = "1" ]] # we are matching the command
+  then
+    opts="add-catalog add-included-manifest add-pkg configure copy-manifest \
+	  display-manifest exit find help list-catalog-items list-catalogs list-manifests \
+	  new-manifest remove-catalog remove-included-manifest remove-pkg rename-manifest \
+	  version"
+    COMPREPLY=( $(compgen -W "${opts}" ${cur}) )
+    return 0
+  fi
+
+  cmd="${COMP_WORDS[1]}"
+    
+  case "$cmd" in
+ 	add-catalog) _manifestutil_add-catalog ;;
+	add-included-manifest) _manifestutil_add-included-manifest ;;
+	add-pkg) _manifestutil_add-pkg ;;
+	configure) _manifestutil_configure ;;
+	copy-manifest) _manifestutil_copy-manifest ;;
+	display-manifest) _manifestutil_display-manifest ;;
+	exit) _manifestutil_exit ;;
+	find) _manifestutil_find ;;
+	help) _manifestutil_help ;;
+	list-catalog-items) _manifestutil_list-catalog-items ;;
+	list-catalogs) _manifestutil_list-catalogs ;;
+	list-manifests) _manifestutil_list-manifests ;;
+	new-manifest) _manifestutil_new-manifest ;;
+	remove-catalog) _manifestutil_remove-catalog ;;
+	remove-included-manifest) _manifestutil_remove-included-manifest ;;
+	remove-pkg) _manifestutil_remove-pkg ;;
+	rename-manifest) _manifestutil_rename-manifest ;;
+	version) _manifestutil_version ;;
+  esac
+}
+
+complete -o bashdefault -o default -F _manifestutil manifestutil

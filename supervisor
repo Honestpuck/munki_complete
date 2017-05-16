@@ -1,0 +1,22 @@
+# Bash completion for supervisor
+# by Tony Williams, honestpuck@gmail.com
+# version 0.1
+# 16/05/2017
+
+_supervisor() {
+  local cur opts
+  COMPREPLY=()
+
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  opts="--help --timeout --delayrandom --error-exec --error-exec-exit-codes --debug" 
+
+  case "$cur" in
+    -*)
+      COMPREPLY=($(compgen -W "$opts" -- "$cur"))
+      return
+      ;;
+  esac
+
+}
+
+complete -o bashdefault -o default -F _supervisor supervisor

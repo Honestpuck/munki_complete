@@ -1,0 +1,35 @@
+# Bash completion for munkiimport
+# by Tony Williams, honestpuck@gmail.com
+# version 0.1
+# 16/05/2017
+
+_munkiimport() {
+  local cur opts
+  COMPREPLY=()
+
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  opts="--help --configure --subdirectory= -nointeractive --repo-path= --repo-url= \
+    --icon-path= --version --verbose \
+    --name= --displayname= --description= --pkgvers= --RestartAction= \
+    --uninstall_method= --installcheck_script= --uninstallcheck_script= \
+    --preinstall_script= --postinstall_script= --preuninstall_script= \
+    --postuninstall_script= --uninstall_script= --itemname= --appname= --destinationpath= \
+    --destinationitemname= --destinationitem= --owner= --group= --mode= --pkgname=\
+    --installer_choices_xml --installer_environment= --unattended_install\
+    --unattended_uninstall --uninstallerdmg= --uninstallerpkg= --uninstallpkg=
+    --force_install_after_date --file= --apple_update= --autoremove --OnDemand \
+    --minimum_munki_version= --minimum_os_version=  --maximum_os_version= \
+    --update_for= --requires= --blocking_application=  --catalog= --category= \
+    --developer= --icon= --notes= --nopkg" 
+ 
+
+  case "$cur" in
+    -*)
+      COMPREPLY=($(compgen -W "$opts" -- "$cur"))
+      return
+      ;;
+  esac
+
+}
+
+complete -o bashdefault -o default -F _munkiimport munkiimport
