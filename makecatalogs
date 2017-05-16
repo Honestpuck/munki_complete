@@ -6,17 +6,16 @@
 ## this is so small we do it in one hunk.
 
 _makecatalogs() {
-    local cur prev opts
+    local cur
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
 
   case "$cur" in
     --*)
-      COMPREPLY=($(compgen -W "--help --force --items=" -- "$cur"))
+      COMPREPLY=($(compgen -W "--help --force --version" -- "$cur"))
       return
       ;;
   esac
 }
 
-complete -o bashdefault -o default -F _iconimporter iconimporter
+complete -o bashdefault -o default -F _makecatalogs makecatalogs

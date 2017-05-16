@@ -1,0 +1,23 @@
+# Bash completion for launchapp
+# by Tony Williams, honestpuck@gmail.com
+# version 0.1
+# 16/05/2017
+
+_launchapp() {
+  local cur opts
+  COMPREPLY=()
+
+  cur="${COMP_WORDS[COMP_CWORD]}"
+  opts="-a -b -e -t -f --fresh --reveal --wait-apps --args --new --hide --background \
+    --header -s" 
+
+  case "$cur" in
+    -*)
+      COMPREPLY=($(compgen -W "$opts" -- "$cur"))
+      return
+      ;;
+  esac
+
+}
+
+complete -o bashdefault -o default -F _launchapp launchapp
