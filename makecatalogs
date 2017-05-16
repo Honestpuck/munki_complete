@@ -1,0 +1,22 @@
+# Bash completion for makecatalogs
+# by Tony Williams, honestpuck@gmail.com
+# version 0.1
+# 16/05/2017
+
+## this is so small we do it in one hunk.
+
+_makecatalogs() {
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+
+  case "$cur" in
+    --*)
+      COMPREPLY=($(compgen -W "--help --force --items=" -- "$cur"))
+      return
+      ;;
+  esac
+}
+
+complete -o bashdefault -o default -F _iconimporter iconimporter
