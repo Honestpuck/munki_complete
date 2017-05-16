@@ -1,15 +1,16 @@
-# Bash completion for launchapp
+# Bash completion for managedsoftwareupdate
 # by Tony Williams, honestpuck@gmail.com
 # version 0.1
 # 16/05/2017
 
-_launchapp() {
+_managedsoftwareupdate() {
   local cur opts
   COMPREPLY=()
 
   cur="${COMP_WORDS[COMP_CWORD]}"
-  opts="-a -b -e -t -f --fresh --reveal --wait-apps --args --new --hide --background \
-    --header -s" 
+  opts="--help --auto --logoutinstall --installwithnologout --manualcheck \
+    --munkistatusoutput --id= --quiet --verbose --checkonly -installonly \
+    --applesuspkgsonly --munkipkgsonly --version" 
 
   case "$cur" in
     -*)
@@ -20,4 +21,4 @@ _launchapp() {
 
 }
 
-complete -o bashdefault -o default -F _launchapp launchapp
+complete -o bashdefault -o default -F _managedsoftwareupdate managedsoftwareupdate
