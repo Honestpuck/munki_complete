@@ -12,7 +12,7 @@ _iconimporter() {
     prev="${COMP_WORDS[COMP_CWORD-1]}"
 
   case "$cur" in
-    --*)
+    -*)
       COMPREPLY=($(compgen -W "--help --force --items=" -- "$cur"))
       return
       ;;

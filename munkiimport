@@ -9,8 +9,8 @@ _munkiimport() {
 
   cur="${COMP_WORDS[COMP_CWORD]}"
   opts="--help --configure --subdirectory= -nointeractive --repo-path= --repo-url= \
-    --icon-path= --version --verbose \
-    --name= --displayname= --description= --pkgvers= --RestartAction= \
+    --icon-path= --version --verbose"
+  opts="$opts --name= --displayname= --description= --pkgvers= --RestartAction= \
     --uninstall_method= --installcheck_script= --uninstallcheck_script= \
     --preinstall_script= --postinstall_script= --preuninstall_script= \
     --postuninstall_script= --uninstall_script= --itemname= --appname= --destinationpath= \
@@ -22,7 +22,6 @@ _munkiimport() {
     --update_for= --requires= --blocking_application=  --catalog= --category= \
     --developer= --icon= --notes= --nopkg" 
  
-
   case "$cur" in
     -*)
       COMPREPLY=($(compgen -W "$opts" -- "$cur"))

@@ -11,7 +11,7 @@ _makecatalogs() {
     cur="${COMP_WORDS[COMP_CWORD]}"
 
   case "$cur" in
-    --*)
+    -*)
       COMPREPLY=($(compgen -W "--help --force --version" -- "$cur"))
       return
       ;;

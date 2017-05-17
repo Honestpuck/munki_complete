@@ -35,7 +35,7 @@ __manifestutilcomp() {
 _manifestutil_add-catalog() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   case "$cur" in
-    --*)
+    -*)
       __manifestutilcomp "--help --manifest="
       return
       ;;
@@ -45,7 +45,7 @@ _manifestutil_add-catalog() {
 _manifestutil_add-included-manifest() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   case "$cur" in
-    --*)
+    -*)
       __manifestutilcomp "--help --manifest"
       return
       ;;
@@ -55,7 +55,7 @@ _manifestutil_add-included-manifest() {
 _manifestutil_add-pkg() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   case "$cur" in
-    --*)
+    -*)
       __manifestutilcomp "--help --manifest --section"
       return
       ;;
@@ -81,7 +81,7 @@ _manifestutil_exit() {
 _manifestutil_find() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   case "$cur" in
-    --*)
+    -*)
       __manifestutilcomp "--help --section"
       return
       ;;
@@ -111,7 +111,7 @@ _manifestutil_new-manifest() {
 _manifestutil_remove-catalog() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   case "$cur" in
-    --*)
+    -*)
       __manifestutilcomp "--help --manifest="
       return
       ;;
@@ -121,7 +121,7 @@ _manifestutil_remove-catalog() {
 _manifestutil_remove-included-manifest() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   case "$cur" in
-    --*)
+    -*)
       __manifestutilcomp "--help --manifest="
       return
       ;;
@@ -131,7 +131,7 @@ _manifestutil_remove-included-manifest() {
 _manifestutil_remove-pkg() {
   local cur="${COMP_WORDS[COMP_CWORD]}"
   case "$cur" in
-    --*)
+    -*)
       __manifestutilcomp "--help --manifest= --section="
       return
       ;;
